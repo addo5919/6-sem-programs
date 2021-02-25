@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1613489645 source:c:\users\aditya\desktop\os program practice2\framesort\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1613489645 source:c:\users\aditya\desktop\computer network programs\framesort\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
