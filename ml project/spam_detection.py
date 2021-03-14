@@ -56,9 +56,10 @@ from sklearn.naive_bayes import MultinomialNB
 model = MultinomialNB()
 model.fit(X_train, y_train)
 print(model.score(X_test, y_test))
+'''------------------------------------------------------------------------------------------------------------------------
 messages = [
     """
-    Hi Kunal,
+    Hi Aditya,
 We invite you to participate in MishMash - India’s largest online diversity hackathon. 
 The hackathon is a Skillenza initiative and sponsored by Microsoft, Unity, Unilever, Gojek, Rocketium and Jharkhand Government. 
 We have a special theme for you - Deep Tech/Machine Learning - sponsored by Unilever, which will be perfect for you.
@@ -74,11 +75,37 @@ Whether or not this position ends up being a fit, we will keep your information 
 so we can contact you for other positions that align to your experience and skill set.
 """
 ]
+----------------------------------------------------------------------------------------------------------------------------
+'''
 def prepare(messages):
     d = getDoc(messages)
     # dont do fit_transform!! it will create new vocab.
     return cv.transform(d)
 
-messages = prepare(messages)
-y_pred = model.predict(messages)
-print(y_pred)
+
+#---------------------GUI---------------------------------------------------------------------------------------------------
+
+from tkinter import *
+from tkinter import messagebox
+
+def myClick():
+    message=myTextBox.get(1.0,END)
+    messages=[message]
+    messages=prepare(messages)
+    y_pred=model.predict(messages)
+    result=y_pred[0]
+    if(result=='ham'):
+         messagebox.showinfo("Result","The entered message is not spam")
+    else:
+         messagebox.showinfo("Result","The entered message is spam")
+    myTextBox.delete(1.0,END)
+        
+root=Tk()
+root.title("Spam message checker")
+myLabel=Label(root,text="Enter the message:")
+myTextBox=Text(root,width=60,height=20)
+myButton=Button(root,text="Check",command=myClick)
+myLabel.grid(row=0,column=0)
+myTextBox.grid(row=1,column=0)
+myButton.grid(row=2,column=0)
+root.mainloop()
