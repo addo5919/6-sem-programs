@@ -1,0 +1,55 @@
+package com.example.fooddelivery;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+CheckBox cb1,cb2,cb3,cb4;
+Button btn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        cb1=findViewById(R.id.checkBox1);
+        cb2=findViewById(R.id.checkBox2);
+        cb3=findViewById(R.id.checkBox3);
+        cb4=findViewById(R.id.checkBox4);
+        btn=findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int total=0;
+                StringBuilder message=new StringBuilder();
+                message.append("*** YOUR ORDER ***\n");
+                if(cb1.isChecked())
+                {
+                    message.append("pizza 400rs\n");
+                    total+=400;
+                }
+                if(cb2.isChecked())
+                {
+                    message.append("coke 200rs\n");
+                    total+=200;
+                }
+                if(cb3.isChecked())
+                {
+                    message.append("burger 100rs\n");
+                    total+=100;
+                }
+                if(cb4.isChecked())
+                {
+                    message.append("fries 150rs\n");
+                    total+=150;
+                }
+                message.append("Total: "+total+"rs");
+                Toast.makeText(MainActivity.this,message.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
+
